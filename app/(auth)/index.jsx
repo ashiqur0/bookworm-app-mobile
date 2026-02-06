@@ -3,6 +3,7 @@ import styles from '../../assets/styles/login.styles'
 import { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import COLORS from '../../constants/colors';
+import { Link } from 'expo-router';
 
 export default function Login() {
 
@@ -96,6 +97,16 @@ export default function Login() {
                             isLoading ? (<ActivityIndicator color='#fff' />) : (<Text style={styles.buttonText}>Login</Text>)
                         }
                     </TouchableOpacity>
+
+                    {/* FOOTER */}
+                    <View style={styles.footer}>
+                        <Text style={styles.footerText}>Do not have an account?</Text>
+                        <Link href="/(auth)/signup" asChild>
+                            <TouchableOpacity>
+                                <Text style={styles.link}>Sign Up</Text>
+                            </TouchableOpacity>
+                        </Link>
+                    </View>
                 </View>
             </View>
         </View>);
