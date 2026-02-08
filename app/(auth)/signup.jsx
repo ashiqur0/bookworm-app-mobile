@@ -1,10 +1,9 @@
-import { View, Text, KeyboardAvoidingView, Platform, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { View, Text, KeyboardAvoidingView, Platform, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import styles from '../../assets/styles/login.styles';
 import { Ionicons } from '@expo/vector-icons';
 import COLORS from '../../constants/colors';
 import { useState } from 'react';
-import { Activity } from 'react';
-import { Link, router } from 'expo-router';
+import { useRouter } from 'expo-router';
 
 export default function Signup() {
 
@@ -13,6 +12,8 @@ export default function Signup() {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+
+    const router = useRouter();
 
     const handleSignUp = () => {
 
