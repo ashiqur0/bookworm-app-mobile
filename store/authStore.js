@@ -38,4 +38,26 @@ export const useAuthStore = create((set) => ({
             return { success: false, error: error.message };
         }
     },
+
+    checkAuth: async () => {
+        try {
+            const token = await AsyncStorage.getItem('token');
+            const userJson = await AsyncStorage.getItem('user');
+            const user = userJson ? JSON.parse(userJson) : null;
+
+            set({ user, token });
+        } catch (error) {
+            console.error("Error checking auth:", error);
+        }
+    },
+
+    logout: async () => {
+        try {
+            await AsyncStorage.removeItem('user');
+            await AsyncStorage.removeItem('token');
+            set({ user: null, token: null });
+        } catch (error) {
+            console.error("Error during logout:", error);
+        }
+    },
 }));
