@@ -19,6 +19,8 @@ export default function Signup() {
     const handleSignUp = async () => {
         const result = await register(username, email, password);
 
+        console.log({ username, email, password });
+
         if (!result.success) {
             Alert.alert('Registration Failed', result.error);
         }

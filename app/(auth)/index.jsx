@@ -11,18 +11,13 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-    const { isLoading, login } = useAuthStore();  // global variable from zustand store
+    const { user, isLoading, login } = useAuthStore();  // global variable from zustand store
 
     const handleLogin = async () => {
-        // setIsLoading(true);
+        
         const result = await login(email, password);
-        // setIsLoading(false);
 
-        console.log("result: ", result);
-
-        if (!result.success) {
-            Alert.alert('Login Failed', result.error);
-        }
+        if (!result.success) Alert.alert('Error', result.error);
     }
 
     return (

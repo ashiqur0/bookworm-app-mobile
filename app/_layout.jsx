@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export default function RootLayout() {
 
   const router = useRouter();
-  const segments = useSegments();
+  const segments = useSegments(); // to get the current route segments
   const { checkAuth, user, token } = useAuthStore();
 
   useEffect(() => {
@@ -17,11 +17,11 @@ export default function RootLayout() {
 
   // handle navigation based on the auth state
   useEffect(() => {
-    const isAuthScreen = segments[0] === '(auth)';
+    const inAuthScreen = segments[0] === '(auth)';
     const isSignedIn = user && token;
 
-    if (!isSignedIn && !isAuthScreen) router.replace('/(auth)');
-    else if (isSignedIn && isAuthScreen) router.replace('/(tabs)');
+    if (!isSignedIn && !inAuthScreen) router.replace('/(auth)');
+    else if (isSignedIn && inAuthScreen) router.replace('/(tabs)');
   }, [user, token, segments, router]);
 
   // console.log('segments: ', segments);
